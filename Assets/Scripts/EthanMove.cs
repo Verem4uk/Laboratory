@@ -72,6 +72,7 @@ public class EthanMove : MonoBehaviour {
                     {
                       // transform.LookAt(door);
                         state = States.wait;
+                        anim.SetTrigger("Open");
                         print("включаем анимацию");
                     }
                     
