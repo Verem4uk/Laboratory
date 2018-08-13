@@ -5,12 +5,14 @@ using UnityEngine.AI;
 
 public class EthanMove : MonoBehaviour {
 
-   private bool move = false;
+   
    private Vector3 target;
+   // private Vector3 target_pos = new Vector3(0,0,0);
     Quaternion look;
+    Transform door;
   // private Vector3 direction;
 
-    NavMeshAgent nav;
+   NavMeshAgent nav;
    Animator anim;
    States state;
     // Use this for initialization
@@ -18,8 +20,9 @@ public class EthanMove : MonoBehaviour {
     enum States
     {
         wait,
-        turn,
-        walk
+        firstturn,
+        walk,
+        secondturn
     }
     
 	void Start () {
@@ -30,31 +33,53 @@ public class EthanMove : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (state==States.walk)
-        {            
-            if (Vector3.Distance(transform.position, target) < 0.5)
-            {
-                state = States.wait;
-                anim.SetBool("Walk", false);
-                print("дошел");               
-            }
-            
-        }
-        if(state==States.turn)
+       
+        switch (state)
         {
-            this.transform.rotation = Quaternion.Slerp(this.transform.rotation, look, Time.deltaTime*2);
-            print(look.y);
-            print(transform.rotation.y);
-            if (Mathf.Abs((Mathf.Abs(look.y) - Mathf.Abs(transform.rotation.y))) < 0.02)
+            case States.firstturn:
             {
-                state = States.walk;
-                anim.SetBool("Walk", true);
-                nav.SetDestination(target);
-                nav.speed = 2;
-                print("могу идти");
+                    this.transform.rotation = Quaternion.Slerp(this.transform.rotation, look, Time.deltaTime * 2);
+                    
+                    if (Mathf.Abs((Mathf.Abs(look.y) - Mathf.Abs(transform.rotation.y))) < 0.01)
+                    {
+                        state = States.walk;
+                        anim.SetBool("Walk", true);
+                        nav.SetDestination(target);
+                        nav.speed = 2;
+                        print("могу идти");
+                    }
+
+                    break;
             }
+            case States.walk:
+            {
+                    if (Vector3.Distance(transform.position, target) < 0.5)
+                    {
+                        state = States.wait;
+                        anim.SetBool("Walk", false);
+                        print("дошел");
+                        state = States.secondturn;
+                        TurnToDoor(door);
+                    }
+                    break;
+
+            }
+            case States.secondturn:
+                {
+                    this.transform.rotation = Quaternion.Slerp(this.transform.rotation, look, Time.deltaTime * 2);
+
+                   if (Mathf.Abs((Mathf.Abs(look.y) - Mathf.Abs(transform.rotation.y))) < 0.005)
+                    {
+                      // transform.LookAt(door);
+                        state = States.wait;
+                        print("включаем анимацию");
+                    }
+                    
+                    break;
+                }
         }
-        
+             
+
     }
     public void GoToPoint (GameObject point)
     {
@@ -62,10 +87,17 @@ public class EthanMove : MonoBehaviour {
         nav.speed = 0;
         print("поворачиваюсь");
         target = point.transform.position;
+        door = point.transform.parent;
         var direction = (target - transform.position).normalized;
         look = Quaternion.LookRotation(direction);
-        state = States.turn;
+        state = States.firstturn;
         
+    }
+    void TurnToDoor(Transform door)
+    {
+        var direction = (door.transform.position - transform.position).normalized;
+        look = Quaternion.LookRotation(direction);
+
     }
 
   
