@@ -70,7 +70,7 @@ public class EthanMove : MonoBehaviour {
 
                    if (Mathf.Abs((Mathf.Abs(look.y) - Mathf.Abs(transform.rotation.y))) < 0.005)
                     {
-                      // transform.LookAt(door);
+                        transform.LookAt(door);
                         state = States.wait;
                         anim.SetTrigger("Open");
                         print("включаем анимацию");
@@ -84,15 +84,17 @@ public class EthanMove : MonoBehaviour {
     }
     public void GoToPoint (GameObject point)
     {
-        anim.SetBool("Walk", false);
-        nav.speed = 0;
-        print("поворачиваюсь");
-        target = point.transform.position;
-        door = point.transform.parent;
-        var direction = (target - transform.position).normalized;
-        look = Quaternion.LookRotation(direction);
-        state = States.firstturn;
-        
+        if (state == States.wait)
+        {
+            anim.SetBool("Walk", false);
+            nav.speed = 0;
+            print("поворачиваюсь");
+            target = point.transform.position;
+            door = point.transform.parent;
+            var direction = (target - transform.position).normalized;
+            look = Quaternion.LookRotation(direction);
+            state = States.firstturn;
+        }
     }
     void TurnToDoor(Transform door)
     {
