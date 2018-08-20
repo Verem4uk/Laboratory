@@ -33,7 +33,7 @@ public class EthanMove : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-       
+        
         switch (state)
         {
             case States.firstturn:
@@ -84,6 +84,7 @@ public class EthanMove : MonoBehaviour {
     }
     public void GoToPoint (GameObject point)
     {
+        print(state);
         if (state == States.wait)
         {
             anim.SetBool("Walk", false);
