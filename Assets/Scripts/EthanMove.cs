@@ -5,14 +5,10 @@ using UnityEngine.AI;
 
 public class EthanMove : MonoBehaviour {
 
-   
-   private Vector3 target;
-   // private Vector3 target_pos = new Vector3(0,0,0);
-    Quaternion look;
-    Transform door;
-  // private Vector3 direction;
-
-   NavMeshAgent nav;
+   public Animator dooranimator;
+   private Transform target;
+   Quaternion newrot;
+    
    Animator anim;
    States state;
     // Use this for initialization
@@ -27,7 +23,6 @@ public class EthanMove : MonoBehaviour {
     
 	void Start () {
       anim = GetComponent<Animator>();
-      nav = GetComponent<NavMeshAgent>();
       state = States.wait;
 	}
 	
@@ -38,44 +33,47 @@ public class EthanMove : MonoBehaviour {
         {
             case States.firstturn:
             {
-                    this.transform.rotation = Quaternion.Slerp(this.transform.rotation, look, Time.deltaTime * 2);
-                    
-                    if (Mathf.Abs((Mathf.Abs(look.y) - Mathf.Abs(transform.rotation.y))) < 0.01)
-                    {
-                        state = States.walk;
-                        anim.SetBool("Walk", true);
-                        nav.SetDestination(target);
-                        nav.speed = 2;
-                        print("могу идти");
-                    }
+                    transform.rotation = Quaternion.Lerp(transform.rotation, newrot, Time.deltaTime);
 
+                    print(newrot.y);
+                    print(transform.rotation.y);
+                    if (Mathf.Abs(Mathf.Round(newrot.y * 10)) == Mathf.Abs(Mathf.Round(transform.rotation.y * 10)))
+                    {
+                        print("повернулся");
+                        transform.rotation = newrot;
+                        state = States.walk;
+                        anim.SetBool("Walk", true);                        
+                    }
                     break;
             }
             case States.walk:
             {
-                    if (Vector3.Distance(transform.position, target) < 0.5)
+                    transform.position = transform.position + transform.forward * Time.deltaTime;
+                    
+                    if (Vector3.Distance(transform.position, target.position) <= 0.5)
                     {
+                        transform.position = new Vector3(target.position.x, transform.position.y, target.position.z);
                         state = States.wait;
                         anim.SetBool("Walk", false);
                         print("дошел");
-                        state = States.secondturn;
-                        TurnToDoor(door);
+                        TurnToDoor();
                     }
                     break;
 
             }
             case States.secondturn:
                 {
-                    this.transform.rotation = Quaternion.Slerp(this.transform.rotation, look, Time.deltaTime * 2);
+                    transform.rotation = Quaternion.Lerp(transform.rotation, newrot, Time.deltaTime);
 
-                   if (Mathf.Abs((Mathf.Abs(look.y) - Mathf.Abs(transform.rotation.y))) < 0.005)
+                    if (Mathf.Abs(Mathf.Round(newrot.y * 10)) == Mathf.Abs(Mathf.Round(transform.rotation.y * 10)))
                     {
-                        transform.LookAt(door);
+                        transform.rotation = newrot;
                         state = States.wait;
-                        anim.SetTrigger("Open");
-                        print("включаем анимацию");
+                        print("открываем");
+                        dooranimator.SetTrigger("Open");
+                        anim.SetTrigger("Open");                        
                     }
-                    
+
                     break;
                 }
         }
@@ -88,20 +86,18 @@ public class EthanMove : MonoBehaviour {
         if (state == States.wait)
         {
             anim.SetBool("Walk", false);
-            nav.speed = 0;
-            print("поворачиваюсь");
-            target = point.transform.position;
-            door = point.transform.parent;
-            var direction = (target - transform.position).normalized;
-            look = Quaternion.LookRotation(direction);
+            target = point.transform;
+            dooranimator = point.transform.parent.GetComponent<Animator>();
+            Vector3 relativePos = new Vector3(target.position.x, transform.position.y, target.position.z) - transform.position;
+            newrot = Quaternion.LookRotation(relativePos);
             state = States.firstturn;
         }
     }
-    void TurnToDoor(Transform door)
+    void TurnToDoor()
     {
-        var direction = (door.transform.position - transform.position).normalized;
-        look = Quaternion.LookRotation(direction);
-
+        Vector3 relativePos = new Vector3(target.position.x, transform.position.y, target.position.z - 1) - transform.position;
+        newrot = Quaternion.LookRotation(relativePos);
+        state = States.secondturn;
     }
 
   
