@@ -95,7 +95,12 @@ public class EthanMove : MonoBehaviour {
     }
     void TurnToDoor()
     {
-        Vector3 relativePos = new Vector3(target.position.x, transform.position.y, target.position.z - 1) - transform.position;
+        //target.transform.localPosition = target.transform.forward;
+        //Vector3 forwardz = target.transform.localPosition + target.transform.forward;
+        //target.localPosition = target.transform.forward;
+        Vector3 forward = target.transform.position + target.transform.right;
+        Vector3 relativePos = new Vector3(forward.x, transform.position.y, forward.z) - transform.position;
+        //target.localPosition = relativePos;
         newrot = Quaternion.LookRotation(relativePos);
         state = States.secondturn;
     }
