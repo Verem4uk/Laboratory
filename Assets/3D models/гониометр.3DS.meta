@@ -1,0 +1,196 @@
+fileFormatVersion: 2
+guid: bd8ef7b4e8379a945b6d96e5cdacd2c2
+timeCreated: 1493650343
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Cylinder00
+    100002: Cylinder01
+    100004: Cylinder02
+    100006: Cylinder03
+    100008: Cylinder04
+    100010: Cylinder05
+    100012: Cylinder06
+    100014: Cylinder07
+    100016: Cylinder08
+    100018: Cylinder09
+    100020: Cylinder10
+    100022: Cylinder11
+    100024: Cylinder12
+    100026: Cylinder13
+    100028: Cylinder14
+    100030: Cylinder15
+    100032: Cylinder16
+    100034: Cylinder17
+    100036: Cylinder18
+    100038: Line001
+    100040: Line002
+    100042: Line003
+    100044: Line004
+    100046: Line005
+    100048: oko1
+    100050: oko2
+    100052: Prism
+    100054: //RootNode
+    400000: Cylinder00
+    400002: Cylinder01
+    400004: Cylinder02
+    400006: Cylinder03
+    400008: Cylinder04
+    400010: Cylinder05
+    400012: Cylinder06
+    400014: Cylinder07
+    400016: Cylinder08
+    400018: Cylinder09
+    400020: Cylinder10
+    400022: Cylinder11
+    400024: Cylinder12
+    400026: Cylinder13
+    400028: Cylinder14
+    400030: Cylinder15
+    400032: Cylinder16
+    400034: Cylinder17
+    400036: Cylinder18
+    400038: Line001
+    400040: Line002
+    400042: Line003
+    400044: Line004
+    400046: Line005
+    400048: oko1
+    400050: oko2
+    400052: Prism
+    400054: //RootNode
+    2300000: Cylinder00
+    2300002: Cylinder01
+    2300004: Cylinder02
+    2300006: Cylinder03
+    2300008: Cylinder04
+    2300010: Cylinder05
+    2300012: Cylinder06
+    2300014: Cylinder07
+    2300016: Cylinder08
+    2300018: Cylinder09
+    2300020: Cylinder10
+    2300022: Cylinder11
+    2300024: Cylinder12
+    2300026: Cylinder13
+    2300028: Cylinder14
+    2300030: Cylinder15
+    2300032: Cylinder16
+    2300034: Cylinder17
+    2300036: Cylinder18
+    2300038: Line001
+    2300040: Line002
+    2300042: Line003
+    2300044: Line004
+    2300046: Line005
+    2300048: oko1
+    2300050: oko2
+    2300052: Prism
+    3300000: Cylinder00
+    3300002: Cylinder01
+    3300004: Cylinder02
+    3300006: Cylinder03
+    3300008: Cylinder04
+    3300010: Cylinder05
+    3300012: Cylinder06
+    3300014: Cylinder07
+    3300016: Cylinder08
+    3300018: Cylinder09
+    3300020: Cylinder10
+    3300022: Cylinder11
+    3300024: Cylinder12
+    3300026: Cylinder13
+    3300028: Cylinder14
+    3300030: Cylinder15
+    3300032: Cylinder16
+    3300034: Cylinder17
+    3300036: Cylinder18
+    3300038: Line001
+    3300040: Line002
+    3300042: Line003
+    3300044: Line004
+    3300046: Line005
+    3300048: oko1
+    3300050: oko2
+    3300052: Prism
+    4300000: Line001
+    4300002: Line002
+    4300004: oko2
+    4300006: Cylinder00
+    4300008: Line003
+    4300010: Cylinder02
+    4300012: Cylinder03
+    4300014: Cylinder08
+    4300016: Cylinder09
+    4300018: oko1
+    4300020: Prism
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class EthanMove : MonoBehaviour {
 
@@ -37,7 +37,7 @@ public class EthanMove : MonoBehaviour {
 
                     print(newrot.y);
                     print(transform.rotation.y);
-                    if (Mathf.Abs(Mathf.Round(newrot.y * 10)) == Mathf.Abs(Mathf.Round(transform.rotation.y * 10)))
+                    if (Mathf.Abs(Mathf.Round(newrot.y * 100)) == Mathf.Abs(Mathf.Round(transform.rotation.y * 100)))
                     {
                         print("повернулся");
                         transform.rotation = newrot;
@@ -65,13 +65,12 @@ public class EthanMove : MonoBehaviour {
                 {
                     transform.rotation = Quaternion.Lerp(transform.rotation, newrot, Time.deltaTime);
 
-                    if (Mathf.Abs(Mathf.Round(newrot.y * 10)) == Mathf.Abs(Mathf.Round(transform.rotation.y * 10)))
+                    if (Mathf.Abs(Mathf.Round(newrot.y * 200)) == Mathf.Abs(Mathf.Round(transform.rotation.y * 200)))
                     {
                         transform.rotation = newrot;
                         state = States.wait;
                         print("открываем");
-                        dooranimator.SetTrigger("Open");
-                        anim.SetTrigger("Open");                        
+                        StartCoroutine(EnterDoor());         
                     }
 
                     break;
@@ -104,6 +103,14 @@ public class EthanMove : MonoBehaviour {
         newrot = Quaternion.LookRotation(relativePos);
         state = States.secondturn;
     }
+    IEnumerator EnterDoor()//корутина ожидания
+    {
+        dooranimator.SetTrigger("Open");
+        anim.SetTrigger("Open");        
+        yield return new WaitForSeconds(3f);//ждем 3 секунды               
+        // DontDestroyOnLoad(transform.gameObject); 
+        SceneManager.LoadScene("1", LoadSceneMode.Single);
 
-  
+    }
+
 }
