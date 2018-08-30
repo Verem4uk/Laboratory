@@ -54,7 +54,7 @@ public class EthanMove : MonoBehaviour {
             case States.walk:
             {
                     transform.position = transform.position + transform.forward * Time.deltaTime;
-                    print(Vector3.Distance(transform.position, target.position));
+                    //print(Vector3.Distance(transform.position, target.position));
                     if (Vector3.Distance(transform.position, target.position) <= 0.5)
                     {
                         transform.position = new Vector3(target.position.x, transform.position.y, target.position.z);
@@ -70,17 +70,20 @@ public class EthanMove : MonoBehaviour {
                 {
                     transform.rotation = Quaternion.Lerp(transform.rotation, newrot, Time.deltaTime);
 
-                    if (Mathf.Abs(Mathf.Round(newrot.y * 200)) == Mathf.Abs(Mathf.Round(transform.rotation.y * 200)))
+                    if (Mathf.Abs(Mathf.Round(newrot.y * 100)) == Mathf.Abs(Mathf.Round(transform.rotation.y * 100)))
                     {
                         transform.rotation = newrot;
                         state = States.wait;
-                        print("открываем");
+                        print("повернулся к объекту");
                         if (SceneManager.GetActiveScene().name != "1")
                         {
                             GameObject.Find("Main Camera").transform.parent = null;
                             StartCoroutine(EnterDoor());
                         }
-                        
+                        else
+                        {
+                            GameObject.Find("Camera").transform.parent = gameObject.transform;
+                        }
                                 
                     }
 
@@ -129,7 +132,7 @@ public class EthanMove : MonoBehaviour {
         SceneManager.LoadScene("1", LoadSceneMode.Single);
 
     }
-    public void AfterDoor()
+    public void AfterDoor()//эту функцию вызывает событие в анимации
     {
         GoToPoint(GameObject.Find("StartPoint"));
     }

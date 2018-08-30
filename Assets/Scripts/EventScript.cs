@@ -26,7 +26,7 @@ public class EventScript : MonoBehaviour{
     Vector3 position;
     float scrollSpeed = 3.0f;
     float zoomMin = 0.7f;
-    float zoomMax = 4.0f;
+    float zoomMax = 8.0f;
     float distance;
 
 
