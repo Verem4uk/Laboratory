@@ -40,8 +40,8 @@ public class EthanMove : MonoBehaviour {
             {
                     transform.rotation = Quaternion.Lerp(transform.rotation, newrot, Time.deltaTime*2);
 
-                    print(newrot.y);
-                    print(transform.rotation.y);
+                  //  print(newrot.y);
+                   // print(transform.rotation.y);
                     if (Mathf.Abs(Mathf.Round(newrot.y * 100)) == Mathf.Abs(Mathf.Round(transform.rotation.y * 100)))
                     {
                         print("повернулся");
